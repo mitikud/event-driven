@@ -1,0 +1,20 @@
+spring.application.name=payment-service
+
+
+server:
+  port: 8082
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5434/payments
+    username: payments
+    password: payments
+  jpa:
+    hibernate:
+      ddl-auto: update
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: payment-svc
+      auto-offset-reset: earliest
+      properties:
+        isolation.level: read_committed

@@ -1,0 +1,30 @@
+
+server:
+  port: 8081
+spring:
+  application:
+    name: order-service
+  datasource:
+    url: jdbc:postgresql://localhost:5433/orders
+    username: orders
+    password: orders
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        jdbc.lob.non_contextual_creation: true
+kafka:
+  bootstrap-servers: localhost:9092
+  producer:
+    acks: all
+  properties:
+    enable.idempotence: true
+    linger.ms: 5
+    batch.size: 32768
+    compression.type: snappy
+app:
+  topics:
+    orders: orders.v1
+outbox:
+  poll-ms: 1000
